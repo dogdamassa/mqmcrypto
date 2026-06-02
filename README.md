@@ -39,6 +39,7 @@ SITE MQM/
 │   └── build.mjs
 └── public/
     ├── home-community.png
+    ├── community-hero.png
     ├── home-manual.png
     ├── home-mentoria.png
     ├── module-1.png ... module-5.png

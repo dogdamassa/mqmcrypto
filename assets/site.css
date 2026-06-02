@@ -399,6 +399,14 @@ img {
     object-fit: cover;
 }
 
+.community-page .sales-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+}
+
+.community-page .hero-photo img {
+    aspect-ratio: 1115 / 706;
+}
+
 .section-band {
     border-top: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.025);
