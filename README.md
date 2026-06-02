@@ -14,6 +14,7 @@ O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia
 - Paginas individuais de venda para cada produto
 - Conteudo em portugues brasileiro
 - HTML e CSS customizado, sem build
+- Build simples para Vercel copiando os arquivos estaticos para `dist/`
 - Font Awesome via CDN para icones
 - Imagens locais em `public/`
 - Botao de checkout da Comunidade MQM apontando para LastLink
@@ -28,10 +29,14 @@ SITE MQM/
 ├── comunidade.html
 ├── manual.html
 ├── mentoria.html
+├── package.json
 ├── README.md
+├── vercel.json
 ├── .gitignore
 ├── assets/
 │   └── site.css
+├── scripts/
+│   └── build.mjs
 └── public/
     ├── home-community.png
     ├── home-manual.png
@@ -55,6 +60,12 @@ Depois acesse:
 
 ```text
 http://127.0.0.1:8000/
+```
+
+Para gerar a saida usada no Vercel:
+
+```powershell
+npm run build
 ```
 
 ## Pontos principais para editar
