@@ -277,7 +277,7 @@ img {
     padding: 0 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 24px;
 }
 
@@ -357,6 +357,10 @@ img {
     align-items: center;
 }
 
+.centered-cta {
+    justify-content: center;
+}
+
 .btn {
     min-height: 48px;
     display: inline-flex;
@@ -371,12 +375,55 @@ img {
     background: linear-gradient(90deg, var(--accent, var(--orange)), var(--amber));
     font-weight: 800;
     cursor: pointer;
+    box-shadow: 0 14px 32px rgba(234, 88, 12, 0.18);
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 44px rgba(234, 88, 12, 0.28);
+}
+
+.checkout-btn {
+    background: linear-gradient(135deg, #ff5a0a 0%, #ff8a00 48%, #f4c95d 100%);
+    box-shadow:
+        0 14px 36px rgba(234, 88, 12, 0.34),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 0 34px rgba(244, 201, 93, 0.16);
+}
+
+.checkout-btn:hover {
+    box-shadow:
+        0 18px 48px rgba(234, 88, 12, 0.44),
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+        0 0 48px rgba(244, 201, 93, 0.22);
+}
+
+.whatsapp-btn {
+    background: linear-gradient(135deg, #128c7e 0%, #25d366 52%, #1ebe5d 100%);
+    box-shadow:
+        0 14px 36px rgba(37, 211, 102, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 0 36px rgba(37, 211, 102, 0.16);
+}
+
+.whatsapp-btn:hover {
+    box-shadow:
+        0 18px 48px rgba(37, 211, 102, 0.42),
+        0 0 0 1px rgba(255, 255, 255, 0.14) inset,
+        0 0 54px rgba(37, 211, 102, 0.22);
 }
 
 .btn.secondary {
     background: transparent;
     border-color: var(--line);
     color: #dce3ed;
+    box-shadow: none;
+}
+
+.btn.secondary:hover {
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.08);
 }
 
 .btn.disabled {
@@ -384,6 +431,9 @@ img {
     border-color: var(--line);
     color: var(--dim);
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    filter: none;
 }
 
 .hero-photo {
