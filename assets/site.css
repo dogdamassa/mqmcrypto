@@ -233,6 +233,22 @@ img {
     letter-spacing: 0.08em;
 }
 
+.dashboard-access {
+    display: inline-flex;
+    margin-top: 14px;
+    color: rgba(244, 244, 245, 0.4);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+.dashboard-access:hover,
+.dashboard-access:focus-visible {
+    color: var(--amber);
+}
+
 .soon-pill {
     display: inline-flex;
     align-items: center;
@@ -632,6 +648,12 @@ img {
     padding: 28px 24px;
     color: var(--dim);
     text-align: center;
+}
+
+.site-footer .dashboard-access {
+    display: flex;
+    width: max-content;
+    margin: 12px auto 0;
 }
 
 @media (max-width: 820px) {

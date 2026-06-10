@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard de acessos | mQm Crypto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/dashboard.css">
+    <script src="./assets/dashboard.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-shell">
+        <header class="dashboard-header">
+            <div class="dashboard-brand">
+                <img src="./public/mqm-logo-header.png" alt="mQm Crypto">
+                <div>
+                    <p class="eyebrow">Métricas do site</p>
+                    <h1>Dashboard mQm</h1>
+                </div>
+            </div>
+            <div class="header-actions">
+                <label class="period-control">
+                    <span>Período</span>
+                    <select id="period">
+                        <option value="7">7 dias</option>
+                        <option value="14">14 dias</option>
+                        <option value="30" selected>30 dias</option>
+                        <option value="90">90 dias</option>
+                    </select>
+                </label>
+                <button class="ghost-button" id="logout" type="button">Sair</button>
+            </div>
+        </header>
+
+        <main id="dashboard" hidden>
+            <section class="summary-grid" aria-label="Resumo">
+                <article class="metric-card primary">
+                    <span>Visualizações</span>
+                    <strong id="views">0</strong>
+                    <small>Páginas abertas</small>
+                </article>
+                <article class="metric-card">
+                    <span>Visitantes</span>
+                    <strong id="visitors">0</strong>
+                    <small>Pessoas únicas estimadas</small>
+                </article>
+                <article class="metric-card">
+                    <span>Sessões</span>
+                    <strong id="sessions">0</strong>
+                    <small>Visitas ao site</small>
+                </article>
+                <article class="metric-card">
+                    <span>Cliques</span>
+                    <strong id="clicks">0</strong>
+                    <small id="click-rate">0% por visualização</small>
+                </article>
+            </section>
+
+            <section class="panel chart-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">Evolução diária</p>
+                        <h2>Acessos ao longo do tempo</h2>
+                    </div>
+                    <div class="legend">
+                        <span><i class="legend-dot views"></i> Visualizações</span>
+                        <span><i class="legend-dot visitors"></i> Visitantes</span>
+                    </div>
+                </div>
+                <div class="chart" id="timeline" aria-label="Gráfico de acessos"></div>
+            </section>
+
+            <section class="dashboard-grid">
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Interesse</p>
+                            <h2>Onde mais clicaram</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="click-ranking"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Conteúdo</p>
+                            <h2>Páginas mais acessadas</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="page-ranking"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Aquisição</p>
+                            <h2>De onde vieram</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="referrer-ranking"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Público</p>
+                            <h2>Países e dispositivos</h2>
+                        </div>
+                    </div>
+                    <div class="split-rankings">
+                        <div>
+                            <h3>Países</h3>
+                            <div class="ranking compact" id="country-ranking"></div>
+                        </div>
+                        <div>
+                            <h3>Dispositivos</h3>
+                            <div class="ranking compact" id="device-ranking"></div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <p class="last-update" id="last-update"></p>
+        </main>
+
+        <section class="login-card" id="login">
+            <p class="eyebrow">Área restrita</p>
+            <h2>Acesse as métricas do mQm</h2>
+            <p>Use a senha configurada na Vercel para visualizar os acessos e cliques.</p>
+            <form id="login-form">
+                <label>
+                    <span>Senha do dashboard</span>
+                    <input id="token" type="password" autocomplete="current-password" required>
+                </label>
+                <button type="submit">Entrar no dashboard</button>
+            </form>
+            <button class="demo-button" id="demo" type="button">Visualizar demonstração</button>
+            <p class="form-message" id="message" role="status"></p>
+        </section>
+    </div>
+</body>
+</html>

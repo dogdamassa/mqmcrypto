@@ -6,6 +6,7 @@ const entries = [
   "comunidade.html",
   "manual.html",
   "mentoria.html",
+  "dashboard.html",
   "assets",
   "public",
 ];
