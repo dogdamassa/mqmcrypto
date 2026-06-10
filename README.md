@@ -93,7 +93,7 @@ Para ativar a coleta na Vercel:
 1. Adicione uma integracao Redis/Upstash ao projeto.
 2. Confirme que ela criou `KV_REST_API_URL` e `KV_REST_API_TOKEN` (ou as
    equivalentes `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN`).
-3. Crie `ANALYTICS_DASHBOARD_TOKEN` com uma senha longa para o dashboard.
+3. Crie `ANALYTICS_DASHBOARD_TOKEN` com a senha escolhida para o dashboard.
 4. Crie `ANALYTICS_HASH_SECRET` com outro valor aleatorio e longo.
 5. Publique novamente o projeto.
 

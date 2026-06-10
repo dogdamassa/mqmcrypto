@@ -274,7 +274,7 @@ select { min-width: 118px; padding: 0 12px; }
     padding: 34px;
 }
 
-.login-card > p:not(.eyebrow):not(.form-message) {
+.login-card > p:not(.eyebrow) {
     margin: 12px 0 24px;
     color: var(--muted);
     line-height: 1.55;
@@ -321,7 +321,7 @@ select { min-width: 118px; padding: 0 12px; }
     background: transparent;
 }
 
-.form-message {
+.login-card #message {
     min-height: 18px;
     margin: 14px 0 0;
     color: #ff9470;
