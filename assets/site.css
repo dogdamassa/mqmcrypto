@@ -9,6 +9,9 @@
     --amber: #d9a441;
     --green: #5bbf77;
     --cyan: #58b8c5;
+    --gold-deep: #b98a1e;
+    --loss: #e0426f;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 }
 
 * {
@@ -115,6 +118,208 @@ img {
     background: rgba(217, 164, 65, 0.12);
     color: #fff;
     transform: translateY(-1px);
+}
+
+.manifesto {
+    width: min(1120px, 100%);
+    margin: 0 auto 64px;
+    text-align: center;
+}
+
+.manifesto-kicker,
+.wallet-kicker {
+    margin: 0;
+    color: var(--amber);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+
+.manifesto-title {
+    margin: 18px auto 0;
+    max-width: 860px;
+    font-size: clamp(1.9rem, 4.6vw, 3.15rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.manifesto-title .loss {
+    color: var(--loss);
+}
+
+.manifesto-title .gain {
+    background: linear-gradient(92deg, var(--amber), #f4c95d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.wallet-evolution {
+    margin: 42px auto 0;
+}
+
+.wallet-evolution .wallet-kicker {
+    text-align: center;
+}
+
+.phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 22px;
+    text-align: left;
+}
+
+.phase-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+    background: #0b0e15;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: phase-rise 640ms ease-out forwards;
+}
+
+.phase-card:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.phase-card:nth-child(3) {
+    animation-delay: 0.32s;
+}
+
+@keyframes phase-rise {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .phase-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.phase-head {
+    margin: 0;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: var(--orange);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+}
+
+.balance-card {
+    margin: 18px 18px 0;
+    padding: 18px 20px 20px;
+    border-radius: 10px;
+    background: #05070b;
+}
+
+.balance-label {
+    margin: 0 0 8px;
+    color: #f8fafc;
+    font-size: 1.12rem;
+    font-weight: 700;
+}
+
+.balance-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.balance-value {
+    color: #fff;
+    font-size: clamp(1.7rem, 2.2vw, 2.05rem);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+.live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border: 1px solid rgba(46, 189, 133, 0.35);
+    border-radius: 999px;
+    background: rgba(46, 189, 133, 0.12);
+    color: #2ebd85;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.balance-today {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.balance-today span {
+    color: #2ebd85;
+}
+
+.balance-split {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.split-col {
+    display: grid;
+    gap: 4px;
+}
+
+.split-right {
+    text-align: right;
+}
+
+.split-label {
+    color: #8d97a5;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.split-value {
+    color: #fff;
+    font-size: 1.16rem;
+    font-weight: 700;
+}
+
+.phase-caption {
+    margin: 16px 0 0;
+    padding: 0 20px 20px;
+    color: #c7cfda;
+    font-size: 0.97rem;
+    line-height: 1.6;
+}
+
+.manifesto-cta {
+    margin-top: 28px;
+}
+
+.manifesto-cta .btn {
+    min-width: 280px;
+}
+
+.paths-kicker {
+    margin: 0 0 18px;
+    text-align: center;
+    scroll-margin-top: 32px;
 }
 
 .product-list {
@@ -665,6 +870,20 @@ img {
         font-size: 1.9rem;
     }
 
+    .manifesto {
+        margin-bottom: 52px;
+    }
+
+    .phase-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .phase-card {
+        width: min(480px, 100%);
+        margin: 0 auto;
+    }
+
     .product-list {
         gap: 14px;
     }
@@ -792,6 +1011,51 @@ img {
     .avatar {
         width: 96px;
         height: 96px;
+    }
+
+    .manifesto {
+        margin-bottom: 44px;
+    }
+
+    .manifesto-kicker {
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+    }
+
+    .manifesto-title {
+        font-size: 1.72rem;
+        line-height: 1.14;
+    }
+
+    .wallet-evolution {
+        margin-top: 30px;
+    }
+
+    .phase-head {
+        padding: 14px 16px 12px;
+        font-size: 0.72rem;
+    }
+
+    .balance-card {
+        margin: 14px 14px 0;
+        padding: 16px 16px 18px;
+    }
+
+    .balance-value {
+        font-size: 1.62rem;
+    }
+
+    .balance-split {
+        margin-top: 20px;
+    }
+
+    .phase-caption {
+        padding: 0 16px 18px;
+        font-size: 0.92rem;
+    }
+
+    .manifesto-cta .btn {
+        min-width: 0;
     }
 
     .product-list {
