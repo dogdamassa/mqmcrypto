@@ -13,8 +13,63 @@
     };
 
     const number = new Intl.NumberFormat("pt-BR");
+    const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+    const brlCents = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
     const savedToken = sessionStorage.getItem("mqm_dashboard_token");
     let demoMode = false;
+
+    // Snapshot do negócio (Lastlink) — exportações de 25/06/2026.
+    // Apenas agregados, sem dados pessoais. Recalcule rodando o export e atualize aqui.
+    const BUSINESS = {
+        asOf: "2026-06-25",
+        totals: {
+            grossApproved: 12980,
+            approvedCount: 84,
+            mrr: 2475.67,
+            arr: 29708,
+            mrrPendingRisk: 891,
+            activeMembers: 25,
+            activeSubs: 25,
+            pendingSubs: 9,
+            newSales: 45,
+            renewals: 39,
+            lostCount: 16,
+            lostValue: 4857,
+            churnedSubs: 18,
+            cartCount: 15,
+            cartValue: 4758,
+            cartsOpen: 8,
+            cartsExpired: 7,
+            chargebacks: 1,
+        },
+        monthly: [
+            { month: "2026-03", revenue: 4261 },
+            { month: "2026-04", revenue: 4459 },
+            { month: "2026-05", revenue: 2475 },
+            { month: "2026-06", revenue: 1785 },
+        ],
+        splits: {
+            saleType: [
+                { label: "Novas vendas", value: 45 },
+                { label: "Renovações", value: 39 },
+            ],
+            subStatus: [
+                { label: "Ativas", value: 25 },
+                { label: "Pendentes", value: 9 },
+                { label: "Expiradas", value: 15 },
+                { label: "Canceladas", value: 3 },
+            ],
+            payment: [
+                { label: "Cartão", value: 51 },
+                { label: "Pix", value: 33 },
+            ],
+            plan: [
+                { label: "Mensal", value: 77 },
+                { label: "Anual", value: 4 },
+                { label: "Manual avulso", value: 3 },
+            ],
+        },
+    };
 
     const demoData = {
         totals: { views: 1847, visitors: 1126, sessions: 1384, clicks: 492, clickRate: 26.6 },
@@ -97,6 +152,74 @@
         });
     }
 
+    function renderValueRanking(id, entries, format) {
+        const container = document.querySelector(`#${id}`);
+        container.replaceChildren();
+        const max = Math.max(...entries.map((entry) => entry.value), 1);
+        entries.forEach((entry) => {
+            const row = document.createElement("div");
+            row.className = "rank-row";
+
+            const label = document.createElement("span");
+            label.className = "rank-label";
+            label.title = entry.label;
+            label.textContent = entry.label;
+
+            const value = document.createElement("strong");
+            value.className = "rank-value";
+            value.textContent = format(entry.value);
+
+            const track = document.createElement("span");
+            track.className = "rank-track";
+            const fill = document.createElement("i");
+            fill.className = "rank-fill";
+            fill.style.width = `${Math.max((entry.value / max) * 100, 2)}%`;
+            track.append(fill);
+            row.append(label, value, track);
+            container.append(row);
+        });
+    }
+
+    function renderBusiness() {
+        const t = BUSINESS.totals;
+        const stamp = new Date(`${BUSINESS.asOf}T12:00:00`).toLocaleDateString("pt-BR");
+        setText("biz-asof", `Dados de ${stamp}`);
+        setText("biz-mrr", brlCents.format(t.mrr));
+        setText("biz-arr", `ARR ${brl.format(t.arr)} · ${t.activeSubs} assinaturas`);
+        setText("biz-members", number.format(t.activeMembers));
+        setText("biz-subs", `${t.activeSubs} ativas · ${t.pendingSubs} pendentes`);
+        setText("biz-gross", brl.format(t.grossApproved));
+        setText("biz-gross-note", `${t.approvedCount} vendas aprovadas (desde mar/26)`);
+        setText("biz-carts", number.format(t.cartsOpen));
+        setText("biz-carts-note", `${brl.format(t.mrrPendingRisk)} aberto · ${t.cartsExpired} expirados`);
+
+        const callout = document.querySelector("#biz-callout");
+        callout.replaceChildren();
+        const parts = [
+            `<strong>${t.pendingSubs} renovações pendentes</strong> (${brl.format(t.mrrPendingRisk)} em risco)`,
+            `<strong>${t.churnedSubs} assinaturas perdidas</strong> no período`,
+            `${brl.format(t.lostValue)} em ${t.lostCount} transações não concluídas`,
+            `${t.chargebacks} chargeback`,
+        ];
+        callout.innerHTML = `⚠ ${parts.join(" &nbsp;·&nbsp; ")}`;
+
+        const monthLabel = (m) => {
+            const date = new Date(`${m}-01T12:00:00`);
+            const name = date.toLocaleDateString("pt-BR", { month: "short" }).replace(".", "");
+            const partial = m === BUSINESS.asOf.slice(0, 7) ? " (parcial)" : "";
+            return `${name}/${m.slice(2, 4)}${partial}`;
+        };
+        renderValueRanking(
+            "biz-monthly",
+            BUSINESS.monthly.map((e) => ({ label: monthLabel(e.month), value: e.revenue })),
+            (v) => brl.format(v)
+        );
+        renderRanking("biz-saletype", BUSINESS.splits.saleType);
+        renderRanking("biz-substatus", BUSINESS.splits.subStatus);
+        renderRanking("biz-payment", BUSINESS.splits.payment);
+        renderRanking("biz-plan", BUSINESS.splits.plan);
+    }
+
     function renderTimeline(entries) {
         const chart = document.querySelector("#timeline");
         chart.replaceChildren();
@@ -129,6 +252,7 @@
     }
 
     function render(data) {
+        renderBusiness();
         setText("views", number.format(data.totals.views));
         setText("visitors", number.format(data.totals.visitors));
         setText("sessions", number.format(data.totals.sessions));

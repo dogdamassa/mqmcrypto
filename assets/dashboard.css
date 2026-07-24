@@ -93,6 +93,43 @@ select, .ghost-button {
 select { min-width: 118px; padding: 0 12px; }
 .ghost-button { padding: 0 16px; cursor: pointer; }
 
+.section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 4px 0 16px;
+}
+
+.section-head.traffic-divider {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+}
+
+.data-stamp {
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.callout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0 0 14px;
+    padding: 13px 18px;
+    border: 1px solid rgba(224, 179, 79, 0.28);
+    border-radius: 13px;
+    background: rgba(224, 179, 79, 0.07);
+    color: #e9d6a6;
+    font-size: 0.83rem;
+    line-height: 1.5;
+}
+
+.callout strong { color: #fff; font-weight: 800; }
+
 .summary-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));

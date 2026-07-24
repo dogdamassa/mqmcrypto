@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="./public/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png">
     <title>Dashboard de acessos | mQm Crypto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +40,101 @@
         </header>
 
         <main id="dashboard" hidden>
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">Negócio · Comunidade mQm Crypto</p>
+                    <h2>Receita &amp; Comunidade</h2>
+                </div>
+                <span class="data-stamp" id="biz-asof"></span>
+            </div>
+
+            <section class="summary-grid" aria-label="Resumo do negócio">
+                <article class="metric-card primary">
+                    <span>Receita recorrente (MRR)</span>
+                    <strong id="biz-mrr">R$ 0</strong>
+                    <small id="biz-arr">ARR R$ 0</small>
+                </article>
+                <article class="metric-card">
+                    <span>Membros ativos</span>
+                    <strong id="biz-members">0</strong>
+                    <small id="biz-subs">0 assinaturas ativas</small>
+                </article>
+                <article class="metric-card">
+                    <span>Faturamento aprovado</span>
+                    <strong id="biz-gross">R$ 0</strong>
+                    <small id="biz-gross-note">0 vendas aprovadas</small>
+                </article>
+                <article class="metric-card">
+                    <span>Carrinhos a recuperar</span>
+                    <strong id="biz-carts">0</strong>
+                    <small id="biz-carts-note">R$ 0 em aberto</small>
+                </article>
+            </section>
+
+            <p class="callout" id="biz-callout"></p>
+
+            <section class="panel chart-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">Evolução</p>
+                        <h2>Faturamento aprovado por mês</h2>
+                    </div>
+                    <div class="legend">
+                        <span><i class="legend-dot views"></i> Receita (R$)</span>
+                    </div>
+                </div>
+                <div class="ranking" id="biz-monthly"></div>
+            </section>
+
+            <section class="dashboard-grid">
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Aquisição</p>
+                            <h2>Novas vendas x Renovações</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="biz-saletype"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Base</p>
+                            <h2>Status das assinaturas</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="biz-substatus"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Pagamento</p>
+                            <h2>Forma de pagamento</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="biz-payment"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Oferta</p>
+                            <h2>Plano contratado</h2>
+                        </div>
+                    </div>
+                    <div class="ranking" id="biz-plan"></div>
+                </article>
+            </section>
+
+            <div class="section-head traffic-divider">
+                <div>
+                    <p class="eyebrow">Tráfego do site</p>
+                    <h2>Acessos &amp; cliques</h2>
+                </div>
+            </div>
+
             <section class="summary-grid" aria-label="Resumo">
                 <article class="metric-card primary">
                     <span>Visualizações</span>
