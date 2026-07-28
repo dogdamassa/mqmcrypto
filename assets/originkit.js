@@ -254,7 +254,8 @@
         var last = 0;
         var raf = 0;
         var hovered = false;
-        var dragState = { active: false, x: 0 };
+        var MAX_VEL = 240;
+        var dragState = { active: false, engaged: false, sx: 0, sy: 0, x: 0 };
         var degPerSec = cfg.speed * 6 * (cfg.direction === "left" ? -1 : 1);
         if (REDUCED) degPerSec = 0;
 
@@ -318,7 +319,7 @@
             var dt = last ? (now - last) / 1000 : 0;
             last = now;
             var f = Math.min(dt, 0.1);
-            if (!dragState.active) {
+            if (!dragState.engaged) {
                 if (Math.abs(vel) > 0.01) {
                     rotY += vel * f;
                     vel *= 0.94;
@@ -332,24 +333,37 @@
 
         root.addEventListener("pointerdown", function (e) {
             if (!cfg.drag) return;
-            if (root.setPointerCapture) root.setPointerCapture(e.pointerId);
-            dragState = { active: true, x: e.clientX };
-            vel = 0;
-            root.style.cursor = "grabbing";
+            dragState = { active: true, engaged: false, sx: e.clientX, sy: e.clientY, x: e.clientX };
         });
         root.addEventListener("pointermove", function (e) {
-            if (!dragState.active) return;
-            var dx = e.clientX - dragState.x;
-            dragState.x = e.clientX;
+            var d = dragState;
+            if (!d.active) return;
+            if (!d.engaged) {
+                var mx = Math.abs(e.clientX - d.sx);
+                var my = Math.abs(e.clientY - d.sy);
+                // Gesto vertical = scroll da página; não engatar o giro.
+                if (my > 12 && my > mx) { d.active = false; return; }
+                if (mx < 10 || mx <= my) return;
+                d.engaged = true;
+                d.x = e.clientX;
+                vel = 0;
+                if (root.setPointerCapture) {
+                    try { root.setPointerCapture(e.pointerId); } catch (err) { /* sem captura */ }
+                }
+                root.style.cursor = "grabbing";
+            }
+            var dx = e.clientX - d.x;
+            d.x = e.clientX;
             var k = 0.3 * cfg.sensitivity;
             rotY += dx * k;
-            vel = dx * k * 60;
+            vel = Math.max(-MAX_VEL, Math.min(MAX_VEL, dx * k * 60));
         });
         function endDrag(e) {
             if (root.releasePointerCapture && e.pointerId != null) {
                 try { root.releasePointerCapture(e.pointerId); } catch (err) { /* já liberado */ }
             }
             dragState.active = false;
+            dragState.engaged = false;
             root.style.cursor = cfg.drag ? "grab" : "default";
         }
         root.addEventListener("pointerup", endDrag);

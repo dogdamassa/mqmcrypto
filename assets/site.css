@@ -23,6 +23,10 @@ html {
     scroll-padding-top: 7rem;
 }
 
+html {
+    overflow-x: clip;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -1575,7 +1579,7 @@ img {
 }
 
 .pool-proofs {
-    overflow: hidden;
+    overflow: clip;
 }
 
 .pool-carousel-hint .hint-mobile { display: none; }
@@ -1643,7 +1647,11 @@ img {
 }
 
 .pool-feedbacks {
-    overflow: hidden;
+    overflow: clip;
+}
+
+.ok-roundcarousel {
+    contain: paint;
 }
 
 /* ----------------------------- Home: card Pool Party ---------------------------- */
