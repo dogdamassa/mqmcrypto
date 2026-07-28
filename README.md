@@ -3,8 +3,8 @@
 Site estatico do **mQm Crypto** estruturado como hub de produtos:
 
 - **Comunidade mQm**
-- **Manual do Exito - Cripto**
-- **Mentoria Completa**
+- **Pool Party** (pools de liquidez / DeFi)
+- **A Virada** (teaser, em breve)
 
 O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia, P2P, DeFi consciente, cartao crypto e soberania financeira.
 
@@ -20,8 +20,8 @@ O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia
 - Font Awesome via CDN para icones
 - Imagens locais em `public/`
 - Botao de checkout da Comunidade mQm apontando para LastLink
-- Botao de checkout do Manual do Exito - Cripto apontando para LastLink
-- Mentoria Completa com botao direto para o WhatsApp do mQm
+- Pool Party com botao direto para o WhatsApp do mQm
+- Galeria coverflow de provas e carrossel 3D de feedbacks (ports Originkit em `assets/originkit.js`)
 
 ## Estrutura
 
@@ -29,22 +29,21 @@ O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia
 SITE MQM/
 ├── index.html
 ├── comunidade.html
-├── manual.html
-├── mentoria.html
+├── poolparty.html
 ├── package.json
 ├── README.md
 ├── vercel.json
 ├── .gitignore
 ├── assets/
-│   └── site.css
+│   ├── site.css
+│   └── originkit.js
 ├── scripts/
 │   └── build.mjs
 └── public/
     ├── home-community.png
     ├── community-hero.png
-    ├── home-manual.png
-    ├── home-mentoria.png
-    ├── module-1.png ... module-5.png
+    ├── home-virada.jpg
+    ├── poolparty/  (mascote, provas proof-1..7, feedbacks 01..16)
     ├── mqm-logo-header.png
     ├── mqm-logo.png
     ├── mqm.png
@@ -74,13 +73,11 @@ npm run build
 ## Pontos principais para editar
 
 - Checkout Comunidade: busque por `https://lastlink.com/p/C9020FF58/checkout-payment/`
-- Checkout Manual do Exito: busque por `https://lastlink.com/p/C7C86F42F/checkout-payment`
-- WhatsApp Mentoria: busque por `https://wa.me/5511977486383`
+- WhatsApp Pool Party: busque por `https://wa.me/5511977486383`
 - Redes sociais: busque por `mqmcrypto`, `mQmcrypto` e `mqm_racional`
 - Home/hub: edite `index.html`
 - Pagina da Comunidade: edite `comunidade.html`
-- Pagina do Manual: edite `manual.html`
-- Pagina da Mentoria: edite `mentoria.html`
+- Pagina do Pool Party: edite `poolparty.html` (slides das provas e feedbacks no script no fim do arquivo)
 - Estilos globais: edite `assets/site.css`
 
 ## Analytics e dashboard

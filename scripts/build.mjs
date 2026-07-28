@@ -4,8 +4,7 @@ const outputDir = "dist";
 const entries = [
   "index.html",
   "comunidade.html",
-  "manual.html",
-  "mentoria.html",
+  "poolparty.html",
   "dashboard.html",
   "assets",
   "public",
