@@ -1567,6 +1567,53 @@ img {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
+.ok-coverflow-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(10, 10, 15, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    cursor: pointer;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 10px 26px rgba(0, 0, 0, 0.45);
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.ok-coverflow-arrow svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+}
+
+.ok-coverflow-arrow:hover,
+.ok-coverflow-arrow:focus-visible {
+    background: rgba(240, 41, 143, 0.24);
+    border-color: rgba(255, 67, 168, 0.6);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.12) inset,
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 26px rgba(240, 41, 143, 0.35);
+}
+
+.ok-coverflow-arrow:active {
+    transform: translateY(-50%) scale(0.94);
+}
+
+.ok-coverflow-arrow-prev { left: 18px; }
+.ok-coverflow-arrow-next { right: 18px; }
+
 .ok-coverflow-dim {
     position: absolute;
     inset: 0;
@@ -1818,6 +1865,14 @@ img {
         right: 14px;
         bottom: 14px;
     }
+
+    .ok-coverflow-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .ok-coverflow-arrow-prev { left: 10px; }
+    .ok-coverflow-arrow-next { right: 10px; }
 
     .pool-feedbacks .ok-roundcarousel {
         height: clamp(360px, 92vw, 470px);

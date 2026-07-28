@@ -180,18 +180,20 @@
             if (!swipe.active || swipe.engaged) return;
             var mx = Math.abs(e.clientX - swipe.sx);
             var my = Math.abs(e.clientY - swipe.sy);
-            if (my > 12 && my > mx) { swipe.active = false; return; }
-            if (mx < 10 || mx <= my) return;
+            if (my > 14 && my > mx) { swipe.active = false; return; }
+            // Limiar alto o bastante para o tremor natural de um toque não engatar.
+            if (mx < 14 || mx <= my) return;
             swipe.engaged = true;
-            suppressClick = true;
         });
         root.addEventListener("pointerup", function (e) {
             if (!swipe.active) return;
             var wasEngaged = swipe.engaged;
             var dx = e.clientX - swipe.sx;
             swipe = { active: false, engaged: false, sx: 0, sy: 0 };
-            if (wasEngaged) {
-                if (Math.abs(dx) >= 36) step(dx < 0 ? 1 : -1);
+            if (wasEngaged && Math.abs(dx) >= 36) {
+                // Só um swipe que navegou de fato suprime o clique fantasma.
+                suppressClick = true;
+                step(dx < 0 ? 1 : -1);
                 window.setTimeout(function () { suppressClick = false; }, 0);
             }
         });
@@ -199,6 +201,24 @@
             swipe = { active: false, engaged: false, sx: 0, sy: 0 };
             suppressClick = false;
         });
+
+        // Setas de navegação clicáveis (desligue com arrows: false).
+        if (cfg.arrows !== false && !cfg.autoplay && n > 1) {
+            var mkArrow = function (dir, label, cls, path) {
+                var b = document.createElement("button");
+                b.type = "button";
+                b.className = "ok-coverflow-arrow " + cls;
+                b.setAttribute("aria-label", label);
+                b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"/></svg>';
+                b.addEventListener("click", function (ev) {
+                    ev.stopPropagation();
+                    step(dir);
+                });
+                root.appendChild(b);
+            };
+            mkArrow(-1, "Card anterior", "ok-coverflow-arrow-prev", "M15 18l-6-6 6-6");
+            mkArrow(1, "Próximo card", "ok-coverflow-arrow-next", "M9 18l6-6-6-6");
+        }
 
         var autoplayId = 0;
         if (cfg.autoplay && !REDUCED && n > 1) {
