@@ -167,22 +167,38 @@
             else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
         });
 
+        // Swipe horizontal com detecção de intenção: gesto vertical vira scroll
+        // da página; horizontal claro (>10px) navega os cards.
+        root.style.touchAction = "pan-y";
         var suppressClick = false;
-        var swipeX = null;
+        var swipe = { active: false, engaged: false, sx: 0, sy: 0 };
         root.addEventListener("pointerdown", function (e) {
             if (cfg.autoplay) return;
-            swipeX = e.clientX;
+            swipe = { active: true, engaged: false, sx: e.clientX, sy: e.clientY };
+        });
+        root.addEventListener("pointermove", function (e) {
+            if (!swipe.active || swipe.engaged) return;
+            var mx = Math.abs(e.clientX - swipe.sx);
+            var my = Math.abs(e.clientY - swipe.sy);
+            if (my > 12 && my > mx) { swipe.active = false; return; }
+            if (mx < 10 || mx <= my) return;
+            swipe.engaged = true;
+            suppressClick = true;
         });
         root.addEventListener("pointerup", function (e) {
-            if (swipeX == null) return;
-            var dx = e.clientX - swipeX;
-            swipeX = null;
-            if (Math.abs(dx) > 40) {
-                suppressClick = true;
-                step(dx < 0 ? 1 : -1);
+            if (!swipe.active) return;
+            var wasEngaged = swipe.engaged;
+            var dx = e.clientX - swipe.sx;
+            swipe = { active: false, engaged: false, sx: 0, sy: 0 };
+            if (wasEngaged) {
+                if (Math.abs(dx) >= 36) step(dx < 0 ? 1 : -1);
+                window.setTimeout(function () { suppressClick = false; }, 0);
             }
         });
-        root.addEventListener("pointercancel", function () { swipeX = null; });
+        root.addEventListener("pointercancel", function () {
+            swipe = { active: false, engaged: false, sx: 0, sy: 0 };
+            suppressClick = false;
+        });
 
         var autoplayId = 0;
         if (cfg.autoplay && !REDUCED && n > 1) {
