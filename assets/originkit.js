@@ -195,7 +195,7 @@
             if (!cfg.responsive) return;
             var w = root.clientWidth;
             if (!w) return;
-            var target = Math.min(cfg.cardWidth, Math.max(230, w * 0.62));
+            var target = Math.min(cfg.cardWidth, Math.max(250, w * 0.7));
             cardW = Math.round(target);
             cardH = Math.round(target * (cfg.cardHeight / cfg.cardWidth));
             update();
@@ -372,7 +372,7 @@
             if (!cfg.responsive) return;
             var w = root.clientWidth;
             if (!w) return;
-            var target = Math.min(cfg.imageWidth, Math.max(210, w * 0.36));
+            var target = Math.min(cfg.imageWidth, Math.max(250, w * 0.45));
             imageW = Math.round(target);
             imageH = Math.round(target * (cfg.imageHeight / cfg.imageWidth));
             layout();
