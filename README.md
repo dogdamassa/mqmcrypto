@@ -4,7 +4,8 @@ Site estatico do **mQm Crypto** estruturado como hub de produtos:
 
 - **Comunidade mQm**
 - **Pool Party** (pools de liquidez / DeFi)
-- **A Virada** (teaser, em breve)
+- **Mentoria Personalizada** (card da home leva direto ao WhatsApp do mQm)
+- **MQMp2p** (bloco na home apontando para https://mqmp2p.com/, compra de cripto com PIX)
 
 O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia, P2P, DeFi consciente, cartao crypto e soberania financeira.
 
@@ -21,6 +22,8 @@ O foco do site e organizar a jornada de quem quer aprender Bitcoin, autocustodia
 - Imagens locais em `public/`
 - Botao de checkout da Comunidade mQm apontando para LastLink
 - Pool Party com botao direto para o WhatsApp do mQm
+- Mentoria Personalizada: card da home abre o WhatsApp do mQm com mensagem pronta
+- Bloco MQMp2p na home, abaixo dos cards de produto
 - Galeria coverflow de provas e carrossel 3D de feedbacks (ports Originkit em `assets/originkit.js`)
 
 ## Estrutura
@@ -42,7 +45,7 @@ SITE MQM/
 └── public/
     ├── home-community.png
     ├── community-hero.png
-    ├── home-virada.jpg
+    ├── home-virada.jpg  (foto do card Mentoria Personalizada)
     ├── poolparty/  (mascote, provas proof-1..7, feedbacks 01..16)
     ├── mqm-logo-header.png
     ├── mqm-logo.png
@@ -73,7 +76,8 @@ npm run build
 ## Pontos principais para editar
 
 - Checkout Comunidade: busque por `https://lastlink.com/p/C9020FF58/checkout-payment/`
-- WhatsApp Pool Party: busque por `https://wa.me/5511977486383`
+- WhatsApp Pool Party e Mentoria: busque por `https://wa.me/5511977486383`
+- Link do MQMp2p: busque por `https://mqmp2p.com/` em `index.html`
 - Redes sociais: busque por `mqmcrypto`, `mQmcrypto` e `mqm_racional`
 - Home/hub: edite `index.html`
 - Pagina da Comunidade: edite `comunidade.html`
